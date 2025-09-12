@@ -1,7 +1,14 @@
 {
   "name": "todo-backend",
   "version": "1.0.0",
-  "description": "A simple backend for a To-Do List application.",
   "main": "src/app.js",
-  "scripts": { "start": "node src/app.js" }
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2"
+  }
 }
