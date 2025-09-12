@@ -44,5 +44,10 @@
     // TODO: hook into your existing UI rendering
     console.log(tasks);
   }
+
+  const addBtn = document.getElementById('addBtn');
+  addBtn.addEventListener('click', () => {
+    console.log('Button clicked!');
+  });
 </script>
 
