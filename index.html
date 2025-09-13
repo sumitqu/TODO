@@ -1,29 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Simple To‑Do App</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple To‑Do</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>To-Do List</h1>
-      <p class="sub">Manage your tasks efficiently</p>
+  <main class="container">
+    <header class="header">
+      <h1 class="title">To‑Do List</h1>
+      <p class="subtitle">Small tasks. Big wins.</p>
     </header>
-    <div class="card">
-      <div class="top">
-        <div class="input">
-          <input id="taskInput" type="text" placeholder="Add a new task..." />
-          <button id="addBtn">Add Task</button>
+
+    <section class="card">
+      <form id="addForm" class="add-form" onsubmit="return false;">
+        <input id="taskInput" class="input" type="text" placeholder="Add a new task…" aria-label="Task input" />
+        <button id="addBtn" class="btn primary" type="button">Add</button>
+      </form>
+
+      <div class="controls">
+        <div id="counts" class="counts">0 tasks</div>
+        <div class="control-buttons">
+          <button id="clearCompleted" class="btn">Clear Completed</button>
+          <button id="clearAll" class="btn">Clear All</button>
         </div>
       </div>
-      <div id="taskList"></div>
-      <div id="counts"></div>
-      <button id="clearAll">Clear All</button>
-      <button id="clearCompleted">Clear Completed</button>
-    </div>
-  </div>
+
+      <div id="taskList" class="task-list" aria-live="polite"></div>
+    </section>
+
+    <footer class="footer">
+      <small>Built with ♥ — keep your tasks simple.</small>
+    </footer>
+  </main>
+
+  <!-- replace with your deployed backend URL -->
+  <script>const API_BASE = window.API_BASE || 'http://localhost:3000/api/tasks';</script>
+  <script src="script.js"></script>
 </body>
 </html>
