@@ -185,6 +185,19 @@
     render();
   }
 
+  // --- SOCKET.IO REAL-TIME COLLABORATION ---
+  let socket;
+  function setupSocket() {
+    if (window.io) {
+      socket = window.io(API_BASE.replace(/\/api\/tasks.*/, ''));
+      socket.on('tasks:update', (serverTasks) => {
+        tasks = serverTasks;
+        render();
+        updateCounts();
+      });
+    }
+  }
+
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', async () => {
     taskInput = document.getElementById('taskInput');
@@ -211,6 +224,16 @@
     if (!ok) render(); // show local tasks if backend unreachable
 
     console.info('Todo initialized. API_BASE=', API_BASE);
+
+    // Dynamically load Socket.IO client if not present
+    if (!window.io) {
+      const s = document.createElement('script');
+      s.src = API_BASE.replace(/\/api\/tasks.*/, '') + '/socket.io/socket.io.js';
+      s.onload = setupSocket;
+      document.head.appendChild(s);
+    } else {
+      setupSocket();
+    }
   });
 
 })();
